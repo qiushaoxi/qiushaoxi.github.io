@@ -1,25 +1,25 @@
 ---
-layout:     post
-title:      "[翻译]Hyperledger Fabric 答疑"
-subtitle:   "Hyperledger Fabric FAQ"
-date:       2017-11-08 17:55:00
-author:     "Joshua"
+layout: post
+title: "[翻译]Hyperledger Fabric 答疑"
+subtitle: "Hyperledger Fabric FAQ"
+date: 2017-11-08 17:55:00
+author: "Joshua"
 categories:
   - 区块链技术
 tags:
-    - Hyperledger
-    - 区块链
-    - 翻译
-    - fabric
+  - Hyperledger
+  - 区块链
+  - 翻译
+  - fabric
 ---
 
 > 本文同时贡献在[超级账本文档中文翻译项目](https://hyperledgercn.github.io/hyperledgerDocs/)
 
+<!-- more -->
 
-| 原文 | 作者 | 审核修正 |
-| --- | --- | --- |
-| [原文](http://hyperledger-fabric.readthedocs.io/en/latest/Fabric-FAQ.html) | Shaoxi Qiu |  |
-
+| 原文                                                                       | 作者       | 审核修正 |
+| -------------------------------------------------------------------------- | ---------- | -------- |
+| [原文](http://hyperledger-fabric.readthedocs.io/en/latest/Fabric-FAQ.html) | Shaoxi Qiu |          |
 
 ## Endorsement<br />背书
 
@@ -51,7 +51,6 @@ endorsement policy for the chaincode.
 
 **数据隐私和权限控制**:
 
-
 Q. How do I ensure data privacy?
 
 问题：我如何能够保证数据的隐私？
@@ -63,7 +62,7 @@ for the chaincodes that are deployed to that channel.
 Second, within a channel you can restrict the input data to chaincode to the
 set of endorsers only, by using visibility settings. The visibility setting
 will determine whether input and output chaincode data is included in the
-submitted transaction,  versus just output data.
+submitted transaction, versus just output data.
 Third, you can hash or encrypt the data before calling chaincode. If you hash
 the data then you will need to provide a means to share the source data.
 If you encrypt the data then you will need to provide a means to share the
@@ -83,7 +82,7 @@ the peer, and data in-transit is encrypted via TLS.
 
 第四、你可以通过链码中的访问控制逻辑限制数据访问权限，只有机构中特定的角色可以访问。
 
-第五、节点中的账本数据可以通过文件系统进行加密，节点间数据传输通过TLS进行加密。
+第五、节点中的账本数据可以通过文件系统进行加密，节点间数据传输通过 TLS 进行加密。
 
 Q. Do the orderers see the transaction data?
 
@@ -93,7 +92,7 @@ A. No, the orderers only order transactions, they do not open the transactions.
 If you do not want the data to go through the orderers at all, and you are only
 concerned about the input data, then you can use visibility settings. The
 visibility setting will determine whether input and output chaincode data is
-included in the submitted transaction,  versus just output data. Therefore,
+included in the submitted transaction, versus just output data. Therefore,
 the input data can be private to the endorsers only.
 If you do not want the orderers to see chaincode output, then you can hash or
 encrypt the data before calling chaincode. If you hash the data then you will
@@ -113,14 +112,14 @@ Q. How do application clients know the outcome of a transaction?
 问题：应用客户端如何知道交易的输出？
 
 A. The transaction simulation results are returned to the client by the
-endorser in the proposal response.  If there are multiple endorsers, the
+endorser in the proposal response. If there are multiple endorsers, the
 client can check that the responses are all the same, and submit the results
 and endorsements for ordering and commitment. Ultimately the committing peers
 will validate or invalidate the transaction, and the client becomes
 aware of the outcome via an event, that the SDK makes available to the
 application client.
 
-答案：背书节点会返回提案模拟交易的结果。如果有多个背书节点，客户端能检查返回结果是否相同后再提交交易结果以及排序和生效所需要的背书。最终，生效节点会验证交易是否合法，客户端通过SDK提供的事件通知方式接收交易结果。
+答案：背书节点会返回提案模拟交易的结果。如果有多个背书节点，客户端能检查返回结果是否相同后再提交交易结果以及排序和生效所需要的背书。最终，生效节点会验证交易是否合法，客户端通过 SDK 提供的事件通知方式接收交易结果。
 
 **Ledger queries**:
 
@@ -143,16 +142,16 @@ data values, using the CouchDB JSON query language within chaincode. The
 application client can perform read-only queries, but these responses are
 not typically submitted as part of transactions to the ordering service.
 
-答案：通过链码可以通过键值查询数据。可以对键值进行范围查询，复合主键可以允许查询出部分键值相同的值，例如由 (owner,asset_id) 组成的复合主键可以用来查询特定实体所拥有的所有asset。
+答案：通过链码可以通过键值查询数据。可以对键值进行范围查询，复合主键可以允许查询出部分键值相同的值，例如由 (owner,asset_id) 组成的复合主键可以用来查询特定实体所拥有的所有 asset。
 
 Q. How do I query the historical data to understand data provenance?
 
 问题：如何查询数据历史来理解数据出处？
 
-A. The chaincode API ``GetHistoryForKey()`` will return history of
+A. The chaincode API `GetHistoryForKey()` will return history of
 values for a key.
 
-答案： 链码中API  ``GetHistoryForKey()`` 会返回键值对应的数据历史。
+答案： 链码中 API `GetHistoryForKey()` 会返回键值对应的数据历史。
 
 Q. How to guarantee the query result is correct, especially when the peer being
 queried may be recovering and catching up on block processing?
@@ -214,7 +213,7 @@ implemented.
 
 答案：用户可以使用链码（在商业规则方面）和成员管理服务（在数字密钥方面）来设计资产和资产管理逻辑。
 
-区块链解决方案中有两种流行的方法来设计资产：无状态的UTXO模型，账户余额是过去交易记录中没有使用的交易输出的合计;另一种是账户模型，账户余额被存储在账本中的状态值中。
+区块链解决方案中有两种流行的方法来设计资产：无状态的 UTXO 模型，账户余额是过去交易记录中没有使用的交易输出的合计;另一种是账户模型，账户余额被存储在账本中的状态值中。
 
 每一个方法都有好处和弊端。本区块链技术对两种方法没有倾向。我们最初的要求就是确保两个方法都能够被容易实现。
 
@@ -223,23 +222,23 @@ Q. Which languages are supported for writing chaincode?
 问题：链码支持哪些语言？
 
 A. Chaincode can be written in any programming language and executed in
-containers.  The first fully supported chaincode language is Golang.
+containers. The first fully supported chaincode language is Golang.
 
 Support for additional languages and the development of a templating language
 have been discussed, and more details will be released in the near future.
 
 It is also possible to build Hyperledger Fabric applications using
-[Hyperledger Composer](<https://hyperledger.github.io/composer/>).
+[Hyperledger Composer](https://hyperledger.github.io/composer/).
 
-答案：链码可以使用任何编程语言编写并在容器内执行。第一个全功能支持的语言是Golang。
+答案：链码可以使用任何编程语言编写并在容器内执行。第一个全功能支持的语言是 Golang。
 
 对其他语言的支持和模板语言的开发正在被讨论，更多细节会在近期发布。
 
-还可以通过[Hyperledger Composer](<https://hyperledger.github.io/composer/>)来构建Hyperledger Fabric应用。
+还可以通过[Hyperledger Composer](https://hyperledger.github.io/composer/)来构建 Hyperledger Fabric 应用。
 
 Q. Does the Hyperledger Fabric have native currency?
 
-问题：Hyperledger Fabric是否有原生的货币？
+问题：Hyperledger Fabric 是否有原生的货币？
 
 A. No. However, if you really need a native currency for your chain network,
 you can develop your own native currency with chaincode. One common attribute
@@ -253,25 +252,24 @@ on its chain.
 
 Q. As part of the v1.0.0 release, what are the highlight differences between v0.6 and v1.0?
 
-问题：V0.6版本和V1.0版本的最大区别是什么？
+问题：V0.6 版本和 V1.0 版本的最大区别是什么？
 
 A. The differences between any subsequent releases are provided together with the
-[Release Notes](<http://hyperledger-fabric.readthedocs.io/en/latest/releases.html>).
-Since Fabric is a pluggable modular framework, you can refer to the [design-docs](<https://wiki.hyperleger.org/projects/fabric/design-docs>) for further information of these difference.
+[Release Notes](http://hyperledger-fabric.readthedocs.io/en/latest/releases.html).
+Since Fabric is a pluggable modular framework, you can refer to the [design-docs](https://wiki.hyperleger.org/projects/fabric/design-docs) for further information of these difference.
 
-答案：任何后续版本的差异都在[版本说明](<http://hyperledger-fabric.readthedocs.io/en/latest/releases.html>)中展现。因为Fabric是一个模块可替换的框架，你可以参考[设计文档](<https://wiki.hyperleger.org/projects/fabric/design-docs>)获取更多差异信息。
+答案：任何后续版本的差异都在[版本说明](http://hyperledger-fabric.readthedocs.io/en/latest/releases.html)中展现。因为 Fabric 是一个模块可替换的框架，你可以参考[设计文档](https://wiki.hyperleger.org/projects/fabric/design-docs)获取更多差异信息。
 
 Q. Where to get help for the technical questions not answered above?
 
 问题：哪里可以获得上文中没被解答的技术问题的帮助？
 
-A. Please use [StackOverflow](<https://stackoverflow.com/questions/tagged/hyperledger>).
+A. Please use [StackOverflow](https://stackoverflow.com/questions/tagged/hyperledger).
 
-答案：请使用 [StackOverflow](<https://stackoverflow.com/questions/tagged/hyperledger>).
-
+答案：请使用 [StackOverflow](https://stackoverflow.com/questions/tagged/hyperledger).
 
 .. Licensed under Creative Commons Attribution 4.0 International License
 
-.. 本文通过Creative Commons Attribution 4.0 International License协议进行授权
+.. 本文通过 Creative Commons Attribution 4.0 International License 协议进行授权
 
-   https://creativecommons.org/licenses/by/4.0/
+https://creativecommons.org/licenses/by/4.0/

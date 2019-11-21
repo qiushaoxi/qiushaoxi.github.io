@@ -16,6 +16,8 @@ original：https://github.com/hyperledger/fabric/blob/master/docs/source/configt
 
 ## Overview<br />概览
 
+<!-- more -->
+
 The `configtxlator` tool was created to support reconfiguration independent
 of SDKs. Channel configuration is stored as a transaction in configuration
 blocks of a channel and may be manipulated directly, such as in the bdd behave
@@ -168,8 +170,7 @@ encoded configurations as `multipart/formdata`, with the original as field
 `http://$SERVER:$PORT/configtxlator/compute/update-from-configs`.
 
 两个不同的配置，可以计算出两个配置更新所需要的交易。
-向 `http://$SERVER:$PORT/configtxlator/compute/update-from-configs``  
-发送两个已编码的 `common.Config` 原型配置作为 `multipart/formdata` ，其中原始配置填入 `original` 域，更新配置填入 `updated` 域。
+向 ` http://$SERVER:$PORT/configtxlator/compute/update-from-configs`` 发送两个已编码的 `common.Config`原型配置作为`multipart/formdata`，其中原始配置填入`original`域，更新配置填入`updated` 域。
 
 For example, given the original config as the file `original_config.pb` and
 the updated config as the file `updated_config.pb` for the channel
