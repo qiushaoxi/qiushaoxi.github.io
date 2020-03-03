@@ -5,9 +5,9 @@ date: 2020-2-6 16:24:00
 author: "Tiny Hill"
 categories:
   - 翻译
+tags:
   - Voice
   - EOS
-tags:
 ---
 
 [原文链接](https://voice.com/blog/road-to-beta/)

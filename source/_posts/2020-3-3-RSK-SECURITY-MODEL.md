@@ -5,9 +5,9 @@ date: 2020-3-3 16:24:00
 author: "Tiny Hill"
 categories:
   - RSK
+tags:
   - RBTC
   - 区块链
-tags:
 ---
 
 RBTC 是 RSK 公链的基础代币，1:1 锚定 BTC，那么 RBTC 是如何做到安全和去中心化的？
